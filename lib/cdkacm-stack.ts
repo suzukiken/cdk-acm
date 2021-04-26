@@ -7,32 +7,33 @@ export class CdkacmStack extends cdk.Stack {
     super(scope, id, props);
 
     const domain = this.node.tryGetContext('domain')
-    const exportname = this.node.tryGetContext('acmarn-exportname');
-    const crossregion_exportname = this.node.tryGetContext('crossregion-acmarn-exportname');
+    const tokyo_exportname = this.node.tryGetContext('acmarn-exportname');
+    const virginia_exportname = this.node.tryGetContext('crossregion-acmarn-exportname');
     
     const zone = route53.HostedZone.fromLookup(this, 'zone', {
       domainName: domain
     })
-
-    const certificate = new acm.Certificate(this, 'certificate', {
+    
+    const tokyo_certificate = new acm.DnsValidatedCertificate(this, 'tokyo_certificate', {
       domainName: '*.' + domain,
-      validation: acm.CertificateValidation.fromDns(zone),
+      hostedZone: zone,
+      region: 'ap-northeast-1',
     })
     
-    const crossregion_certificate = new acm.DnsValidatedCertificate(this, 'crossregion_certificate', {
+    const virginia_certificate = new acm.DnsValidatedCertificate(this, 'crossregion_certificate', {
       domainName: '*.' + domain,
       hostedZone: zone,
       region: 'us-east-1',
     })
     
-    new cdk.CfnOutput(this, 'exportname_out', {
-      value: certificate.certificateArn,
-      exportName: exportname
+    new cdk.CfnOutput(this, 'tokyo_certificatearn_out', {
+      value: tokyo_certificate.certificateArn,
+      exportName: tokyo_exportname
     })
     
-    new cdk.CfnOutput(this, 'crossregion_exportname_out', {
-      value: crossregion_certificate.certificateArn,
-      exportName: crossregion_exportname
+    new cdk.CfnOutput(this, 'virginia_certificatearn_out', {
+      value: virginia_certificate.certificateArn,
+      exportName: virginia_exportname
     })
 
   }
