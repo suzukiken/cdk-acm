@@ -13,7 +13,7 @@
     "@aws-cdk/aws-rds:lowercaseDbIdentifier": true,
     "@aws-cdk/aws-efs:defaultEncryptionAtRest": true,
     "domain": "figmentresearch.com",
-    "acmarn-exportname": "figmentresearch-wildcard-acmarn",
-    "crossregion-acmarn-exportname": "figmentresearch-wildcard-crossregion-acmarn"
+    "tokyo_acmarn_exportname": "figmentresearch-wildcard-tokyo-acmarn",
+    "notrhvirginia_acmarn_exportname": "figmentresearch-wildcard-notrhvirginia-acmarn"
   }
 }
