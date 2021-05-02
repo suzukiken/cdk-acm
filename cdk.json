@@ -14,6 +14,7 @@
     "@aws-cdk/aws-efs:defaultEncryptionAtRest": true,
     "domain": "figmentresearch.com",
     "tokyo_acmarn_exportname": "figmentresearch-wildcard-tokyo-acmarn",
-    "notrhvirginia_acmarn_exportname": "figmentresearch-wildcard-notrhvirginia-acmarn"
+    "notrhvirginia_acmarn_exportname": "figmentresearch-wildcard-notrhvirginia-acmarn",
+    "hostedzoneid_exportname": "figmentresearch-hostedzoneid"
   }
 }

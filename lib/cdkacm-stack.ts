@@ -9,6 +9,7 @@ export class CdkacmStack extends cdk.Stack {
     const domain = this.node.tryGetContext('domain')
     const tokyo_acmarn_exportname = this.node.tryGetContext('tokyo_acmarn_exportname');
     const notrhvirginia_acmarn_exportname = this.node.tryGetContext('notrhvirginia_acmarn_exportname');
+    const hostedzoneid_exportname = this.node.tryGetContext('hostedzoneid_exportname');
     
     const zone = route53.HostedZone.fromLookup(this, 'zone', {
       domainName: domain
@@ -34,6 +35,11 @@ export class CdkacmStack extends cdk.Stack {
     new cdk.CfnOutput(this, 'notrhvirginia_certificatearn_out', {
       value: notrhvirginia_certificate.certificateArn,
       exportName: notrhvirginia_acmarn_exportname
+    })
+    
+    new cdk.CfnOutput(this, 'hostedzone_out', {
+      value: zone.hostedZoneId,
+      exportName: hostedzoneid_exportname
     })
 
   }
